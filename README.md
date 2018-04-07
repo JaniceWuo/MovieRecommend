@@ -15,9 +15,9 @@
     但是pycharm里面安装的是最新版本2.0，导致项目文件自带的代码有错误。后来又卸了重新安装，统一成了1.11.0版本。    
     接下来是mysql，项目迁移如下：
 
-    ![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/images/databaseMigration.jpg)
-
-
-
-
 ![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/images/databaseMigration.jpg)
+    
+    这只是生成了迁移文件，还要执行迁移文件
+    ```python
+       python manage.py migrate
+    ```
