@@ -13,7 +13,7 @@
     2018/4/7		
     今天尝试用了pycharm，之前一直用的sublime，但是文件管理的比较混乱。用pycharm的时候遇到坑了，我系统按安装的是django1.11,
     但是pycharm里面安装的是最新版本2.0，导致项目文件自带的代码有错误。后来又卸了重新安装，统一成了1.11.0版本。    
-    接下来是mysql，项目迁移如下：    ![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/django学习之旅/databaseMigration.JPG
+    接下来是mysql，项目迁移如下：    ![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/databaseMigration.JPG)
 
 
 
