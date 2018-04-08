@@ -21,3 +21,28 @@
     ```python
        python manage.py migrate
     ```
+
+   2018/4/8    
+   进行一下流程梳理：   
+   1.先启动mysql:net start mysql;mysql -u root -p;    
+   2. create database [数据库名字];
+   3.pycharm直接创建一个django项目，然后进入这个项目下，python manage.py startapp myApp  
+   4.在settings.py 中：在INSTALLED_APPS后面加上'myApp'(也可以取其他名字，但是要和前面取的相同)；再配置数据库，代码为：    
+   ```python
+      DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '[数据库名字]',
+        'PASSWORD': 'aptx4869',
+        'HOST': '127.0.0.1',
+        'USER': 'root',
+        'PORT': '',   
+    }
+}
+   ```
+   5.在_init_.py中： import pymysql;  pymysql.install_as_MySQLdb()    
+   6.models.py:加入模型类，属性等。    
+   7.生成迁移文件：python manage.py makemigrations;执行迁移：python manage.py migrate;
+   8.在mysql>中：use [数据库名];  show tables;    
+     在项目文件下，python manage.py runserver  浏览器中输入127.0.0.1:8000    
+   9.在templates下写html文件，然后和views.py视图文件、urls.py文件进行匹配
