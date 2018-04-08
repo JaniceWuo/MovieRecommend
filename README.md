@@ -17,7 +17,7 @@
 
 ![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/images/databaseMigration.jpg)
     
-    这只是生成了迁移文件，还要执行迁移文件
+   这只是生成了迁移文件，还要执行迁移文件
     ```python
        python manage.py migrate
     ```
@@ -27,8 +27,7 @@
    1.先启动mysql:net start mysql;mysql -u root -p;    
    2. create database [数据库名字];
    3.pycharm直接创建一个django项目，然后进入这个项目下，python manage.py startapp myApp  
-   4.在settings.py 中：在INSTALLED_APPS后面加上'myApp'(也可以取其他名字，但是要和前面取的相同)；再配置数据库，代码为： 
-   
+   4.在settings.py 中：在INSTALLED_APPS后面加上'myApp'(也可以取其他名字，但是要和前面取的相同)；再配置数据库，代码为：    
    ```python
       DATABASES = {
     'default': {
@@ -40,8 +39,7 @@
         'PORT': '',   
     }
 }
-    ```
-
+   ```
    5.在_init_.py中： import pymysql;  pymysql.install_as_MySQLdb()    
    6.models.py:加入模型类，属性等。    
    7.生成迁移文件：python manage.py makemigrations;执行迁移：python manage.py migrate;   
