@@ -61,4 +61,6 @@
     ```python
        <link rel="stylesheet" href="{% static 'css/Test.css' %}">
     ```    
-    如果纯粹像写前端那样调用css、js是不能成功的。
+    如果纯粹像写前端那样调用css、js是不能成功的。    
+    输入'http://127.0.0.1:8000/users/login/',返回用户登录界面：    
+    ![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/images/databaseMigration.jpg)
