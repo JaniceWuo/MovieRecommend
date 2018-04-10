@@ -21,7 +21,7 @@
    ```python
        python manage.py migrate
    ```
-
+***
    2018/4/8    
    进行一下流程梳理：   
    1.先启动mysql:net start mysql;mysql -u root -p;    
@@ -46,7 +46,7 @@
    8.在mysql>中：use [数据库名];  show tables;    
      在项目文件下，python manage.py runserver  浏览器中输入127.0.0.1:8000    
    9.在templates下写html文件，然后和views.py视图文件、urls.py文件进行匹配    
-
+***
    2018/4/10    
    今天搭建了django的虚拟开发环境，安装了virtualenv,下次直接输入命令行：e:\GradProject\Scripts\activate，一定要保证整个项目都在虚拟环境中运行。    
    关于html文件调用js、css等文件：首先在建的app目录下建一个static文件，分支如下   
