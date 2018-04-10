@@ -63,4 +63,5 @@
     ```    
     如果纯粹像写前端那样调用css、js是不能成功的。    
     输入'http://127.0.0.1:8000/users/login/'，  返回用户登录界面：    
-    ![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/images/login.jpg)
+    ![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/images/login.jpg)    
+    点击登录后进入推荐系统首页（目前的首页只有一个电影分类页面，之后应增加分页，以及实现用户对电影评分，数据库记录用户对电影的评分）
