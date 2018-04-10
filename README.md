@@ -59,6 +59,6 @@
 └─__pycache__        
     注意migrations和static文件同级。html文件开头要加上 {% load staticfiles %}，引入css的语句为：    
     ```python
-       <link rel="stylesheet" href="{% static 'css/Test.css' %}" >
+       <link rel="stylesheet" href="{% static 'css/Test.css' %}">
     ```    
     如果纯粹像写前端那样调用css、js是不能成功的。
