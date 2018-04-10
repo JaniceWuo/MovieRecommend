@@ -50,15 +50,15 @@
    2018/4/10    
    今天搭建了django的虚拟开发环境，安装了virtualenv,下次直接输入命令行：e:\GradProject\Scripts\activate，一定要保证整个项目都在虚拟环境中运行。    
    关于html文件调用js、css等文件：首先在建的app目录下建一个static文件，分支如下   
-   ├─migrations
-│  └─__pycache__
-├─static
-│  ├─css
-│  ├─img
-│  └─js
-└─__pycache__    
+   ├─migrations    
+│  └─__pycache__    
+├─static    
+│  ├─css    
+│  ├─img    
+│  └─js    
+└─__pycache__        
     注意migrations和static文件同级。html文件开头要加上 {% load staticfiles %}，引入css的语句为：    
-    ```css
+    ```python
        <link rel="stylesheet" href="{% static 'css/Test.css' %}" >
     ```    
     如果纯粹像写前端那样调用css、js是不能成功的。
