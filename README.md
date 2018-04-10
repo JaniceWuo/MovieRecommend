@@ -18,9 +18,9 @@
 ![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/images/databaseMigration.jpg)
     
    这只是生成了迁移文件，还要执行迁移文件
-    ```python
+   ```python
        python manage.py migrate
-    ```
+   ```
 
    2018/4/8    
    进行一下流程梳理：   
@@ -45,4 +45,20 @@
    7.生成迁移文件：python manage.py makemigrations;执行迁移：python manage.py migrate;   
    8.在mysql>中：use [数据库名];  show tables;    
      在项目文件下，python manage.py runserver  浏览器中输入127.0.0.1:8000    
-   9.在templates下写html文件，然后和views.py视图文件、urls.py文件进行匹配
+   9.在templates下写html文件，然后和views.py视图文件、urls.py文件进行匹配    
+
+   2018/4/10    
+   今天搭建了django的虚拟开发环境，安装了virtualenv,下次直接输入命令行：e:\GradProject\Scripts\activate，一定要保证整个项目都在虚拟环境中运行。    
+   关于html文件调用js、css等文件：首先在建的app目录下建一个static文件，分支如下   
+   ├─migrations
+│  └─__pycache__
+├─static
+│  ├─css
+│  ├─img
+│  └─js
+└─__pycache__    
+    注意migrations和static文件同级。html文件开头要加上 {% load staticfiles %}，引入css的语句为：    
+    ```css
+       <link rel="stylesheet" href="{% static 'css/Test.css' %}" >
+    ```    
+    如果纯粹像写前端那样调用css、js是不能成功的。
