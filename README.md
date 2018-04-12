@@ -48,7 +48,7 @@
    9.在templates下写html文件，然后和views.py视图文件、urls.py文件进行匹配    
 ***
    2018/4/10    
-   今天搭建了django的虚拟开发环境，安装了virtualenv,下次直接输入命令行：e:\GradProject\Scripts\activate，一定要保证整个项目都在虚拟环境中运行。    
+   今天搭建了django的虚拟开发环境，安装了virtualenv,下次直接输入命令行：e:\GradProject\Scripts\activate，一定要保证整个项目都在虚拟环境中运行。 django1.11.1  
    关于html文件调用js、css等文件：首先在建的app目录下建一个static文件，分支如下   
    ├─migrations    
 │  └─__pycache__    
@@ -64,4 +64,17 @@
     如果纯粹像写前端那样调用css、js是不能成功的。    
     输入'http://127.0.0.1:8000/users/login/'，  返回用户登录界面：    
     ![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/images/login.jpg)    
-    点击登录后进入推荐系统首页（目前的首页只有一个电影分类页面，之后应增加分页，以及实现用户对电影评分，数据库记录用户对电影的评分）
+    点击登录后进入推荐系统首页（目前的首页只有一个电影分类页面，之后应增加分页，以及实现用户对电影评分，数据库记录用户对电影的评分）    
+
+    2018/4/12    
+    今天找到了另一个csv文件，里面含有电影海报的链接，这样可以直接用Js动态获取链接然后加载图片；    
+    还有由于有很多个csv文件，每个文件包含的内容都不一样，所以要将各个文件合并。准备直接用mysql的多表查询。花了很久才把csv导入进mysql表中的ratings：    
+
+```mysql
+   mysql->CREATE TABLE ratings(userId INT NOT NULL,movieId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,rating DECIMAL(3,1) NOT NULL);
+   mysql> load data local infile "e:/Moviedatabase/hhhh.csv" into table ratings fields terminated by ','
+    -> enclosed by '"'
+    -> lines terminated by '\n'
+    -> (userId,movieId,rating);
+```    
+    
