@@ -76,11 +76,14 @@
     -> enclosed by '"'
     -> lines terminated by '\n'
     -> (userId,movieId,rating);
-```    
-    'mysql> select * from ratings natural join result; 将links表连接到ratings表上。    
+```     
 
     2018/4/13    
+    注意result表里面要存电影的名字，而名字里面很多不确定的特殊符号，比如有逗号，冒号等。所以不能加enclosed by '"'这句，否则csv导进mysql表时会中断。    
+    然后创建一个总表：
+    mysql> CREATE TABLE RTotalTable(movieId INT NOT NULL,userId INT NOT NULL,rating INT,imdbId INT NOT NULL,title varchar(50) NOT NULL);
     mysql->INSERT INTO RTotalTable SELECT *FROM(SELECT * from ratings natural join result) AS tb; //将ratings和result两张表连接后插入建好的RTotalTable表中。    
-    得到的最终表为：
+    得到的最终表如下图所示，可以直接从这张表中得到用户信息及对电影的评分，然后获得推荐电影的id或者名字，通过imdbId可以获取到本地的电影海报。
   
-  ![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/images/RTotalTable.JPG)
+  ![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/images/RTotalTable.JPG)    
+    昨天通过python下载图片时用的电影名字命名，这样过一会就异常了，原因同上，title里面含‘？’或者‘/’都会出错，所以今天改用imdbId.jpg来存图片。
