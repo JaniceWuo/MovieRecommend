@@ -68,7 +68,7 @@
 
     2018/4/12    
     今天找到了另一个csv文件，里面含有电影海报的链接，这样可以直接用Js动态获取链接然后加载图片；    
-    还有由于有很多个csv文件，每个文件包含的内容都不一样，所以要将各个文件合并。准备直接用mysql的多表查询。花了很久才把csv导入进mysql表中的ratings：    
+    还有由于有很多个csv文件，每个文件包含的内容都不一样，所以要将各个文件合并。准备直接用mysql的多表查询。花了很久才成功把csv导入进mysql表中的ratings：    
 
 ```mysql
    mysql->CREATE TABLE ratings(userId INT NOT NULL,movieId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,rating DECIMAL(3,1) NOT NULL);
@@ -77,4 +77,9 @@
     -> lines terminated by '\n'
     -> (userId,movieId,rating);
 ```    
-    
+    'mysql> select * from ratings natural join result; 将links表连接到ratings表上。    
+
+    2018/4/13    
+    mysql->INSERT INTO RTotalTable SELECT *FROM(SELECT * from ratings natural join result) AS tb; //将ratings和result两张表连接后插入建好的RTotalTable表中。    
+    得到的最终表为：
+![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/images/RTotalTable.jpg)
