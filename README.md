@@ -83,4 +83,4 @@
     mysql->INSERT INTO RTotalTable SELECT *FROM(SELECT * from ratings natural join result) AS tb; //将ratings和result两张表连接后插入建好的RTotalTable表中。    
     得到的最终表为：
   
-  ![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/images/RTotalTable.jpg)
+  ![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/images/RTotalTable.JPG)
