@@ -1,0 +1,170 @@
+h1{
+	text-align:center;
+	#color:#00ff00;
+	font-family:"Times New Roman", Times, serif;
+}
+
+
+/*.pic,.BiaoQian{*/
+	/*float:left;*/
+	/*margin-top: 70px;*/
+/*}*/
+
+/*.pic{*/
+	/*margin-left:200px;*/
+	/*#border: 1px solid #00FF00;*/
+	/*margin-right:50px;*/
+	/*width:320px;*/
+	/*height:400px;*/
+/*}*/
+
+/*.BiaoQian{*/
+	/*#border: 1px solid #000000;*/
+	/*width:700px;*/
+	/*height:500px;*/
+/*}*/
+
+
+/*.content {*/
+    /*width:100%;*/
+    /*overflow: hidden;*/
+
+/*}*/
+
+
+/*.tags_list ul*/
+/*{*/
+	/*list-style-type:none;*/
+	/*margin-left:50px;*/
+	/*width:35%;*/
+	/*margin-top: 15px;*/
+/*}*/
+
+
+/*li {*/
+    /*list-style: none;*/
+    /*display: inline-block;*/
+    /*#width: 33.3%;*/
+    /*text-align: center;*/
+    /*overflow: hidden;*/
+    /*vertical-align: bottom;*/
+/*}*/
+
+
+/*.img-box {*/
+    /*height: 300px;*/
+    /*overflow: hidden;*/
+    /*padding-right: 25px;*/
+    /*padding-left: 35px;*/
+/*}*/
+/*.img-box img {*/
+    /*position: relative;*/
+    /*width: 100%;*/
+    /*top: 50%;*/
+    /*transform: translateY(-60%);*/
+/*}*/
+
+
+
+
+/*.star_bg {*/
+    /*width: 120px; height: 20px;*/
+    /*background: url(../img/star.jpg) repeat-x;*/
+    /*position: relative;*/
+    /*overflow: hidden;*/
+/*}*/
+/*.star {*/
+    /*height: 100%; width: 24px;*/
+    /*line-height: 6em;*/
+    /*position: absolute;*/
+    /*z-index: 3;*/
+/*}*/
+/*.star:hover {*/
+    /*background: url(../img/star.jpg) repeat-x 0 -20px!important;*/
+    /*left: 0; z-index: 2;*/
+/*}*/
+/*.star_1 { left: 0; }*/
+
+/*/* 幕后的英雄，单选按钮 */
+
+/*.score_1:checked ~ .star_1 { width: 24px; }*/
+/*.score_2:checked ~ .star_2 { width: 48px; }*/
+/*.score_3:checked ~ .star_3 { width: 72px; }*/
+/*.score_4:checked ~ .star_4 { width: 96px; }*/
+/*.score_5:checked ~ .star_5 { width: 120px; }*/
+
+/*.star_bg:hover .star {  background-image: none; }*/
+
+
+
+.figure_title>a {
+  display: block;
+}
+
+
+#user {
+  padding-left: 10px;
+  margin-top: 20px
+}
+
+.figures_lists {
+  margin-left: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+
+
+.list_item {
+  display: inline-block;
+  /*float: left;*/
+  vertical-align: top;
+  margin-bottom: 20px;
+  position: relative;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.label_title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #1CBF11;
+  border-radius: 10px;
+}
+.label_font {
+  color: #fff;
+  padding: 0 5px;
+}
+#my-content {
+  margin: 25px auto;
+  padding: 0 10px;
+}
+#my-content:first-child {
+  padding: 0;
+}
+
+.figure img {
+  width: 80%;
+}
+.new_image {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/*@media 设备类型 and|only|not (设备特性) {样式代码}*/
+@media handheld and (max-device-width: 768px) {
+  .nav>li {
+    display: inline-table;
+    margin-right: 10px;
+  }
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 10px;
+  }
+  .list_item {
+    width: 32%;
+  }
+}
+
