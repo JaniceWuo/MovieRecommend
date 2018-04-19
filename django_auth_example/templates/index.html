@@ -38,18 +38,82 @@
 		<title>推荐系统主页</title>
 {#		<link rel="stylesheet" href="{% static 'css/Test.css' %}" >#}
         <link rel ="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel ="stylesheet" href="{% static 'css/demo.css' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+
+
         <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
   <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 {#  <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>#}
         <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 {#和分类标签排版有关#}
         <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+{#        <script type="text/javascript" src="{% static 'js/starScore.js' %}"></script>#}
+
+        <script type="text/javascript" src="{% static 'js/jquery.raty.js' %}"></script>
 {#		<script type="text/javascript" src="js/Star.js" ></script>#}
+
+        <style>
+{#.evaluate{#}
+{#    width:100%;#}
+{#}#}
+{##starts{#}
+{#    width:140px;#}
+{#    float:left;#}
+{#}#}
+</style>
 	</head>
+
 	<body>
 		<h1>电影分类界面</h1>
+
+
+
+{#<input type="hidden" id="grade" />#}
+
+
+<script type="text/javascript">
+    $(function(){
+        $(".starts").raty({
+            number : 5,//星星个数
+            path : '{% static 'img' %}',//图片路径
+            {#target : '#grade',//#}
+            hints : ['1','2','3','4','5'],
+            click : function(score, evt) {
+                $("#grade").val(score);
+                alert(score);
+            }
+        });
+
+    });
+
+</script>
+{#        <div class="content">#}
+{#            <div id="startone"  class="block clearfix" >#}
+{#            <div class="star_score"></div>#}
+{#            <p style="float:left;">您的评分：<span class="fenshu"></span> 分</p>#}
+{#        </div>#}
+{##}
+{#            交互效果#}
+{#    <script>#}
+{#     scoreFun($("#startone")),{#}
+{#           fen_d:22,//每一个a的宽度#}
+{#           ScoreGrade:5//a的个数5#}
+{#         }#}
+{#     //显示分数#}
+{#      $(".show_number li p").each(function(index, element) {#}
+{#        var num=$(this).attr("tip");#}
+{#        var www=num*2*16;//#}
+{#        $(this).css("width",www);#}
+{#        $(this).parent(".atar_Show").siblings("span").text(num+"分");#}
+{#    });#}
+{#    </script>#}
+{#        </div>#}
+
+
     <div>
       <hr />
       <ul class="nav nav-tabs nav-justified" id="index">
@@ -60,10 +124,10 @@
         <li><a href="#tab4" data-toggle="tab">科幻</a></li>
         <li><a href="#tab5" data-toggle="tab">犯罪</a></li>
         <li><a href="#tab6" data-toggle="tab">爱情</a></li>
-{#        <li><a href="#tab7" data-toggle="tab">冒险</a></li>#}
+        <li><a href="#tab7" data-toggle="tab">剧情</a></li>
       </ul>
     </div>
-
+{#动作片#}
   <div class="tab-content" id="my-content">
       <div class="tab-pane fade in active" id="tab0">
         <ul class="figures_lists">
@@ -73,24 +137,33 @@
 
             </a>
             <strong class="figure_title">
-              <a _boss="film"  target="_blank" title="蝙蝠侠归来">蝙蝠侠归来(8.1分)</a>
+              <a _boss="film"  href="http://www.imdb.com/title/tt0103776/" target="_blank" title="蝙蝠侠归来">蝙蝠侠归来(8.1分)</a>
+
+                <div class="evaluate">
+                   <div class="starts"></div><div id="title"></div>
+                </div>
             </strong>
+
           </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
             <a _boss="film"  target="_blank" class="figure" tabindex="-1">
-              <img src="{% static 'images/Action/02.jpg' %}" alt="唐人街探案">
+              <img src="{% static 'img/action/434409.jpg' %}" alt="V字仇杀队">
             </a>
             <strong class="figure_title">
-              <a _boss="film"  target="_blank" title="唐人街探案">唐人街探案</a>
+              <a _boss="film"  href="http://www.imdb.com/title/tt0434409/" target="_blank" title="V字仇杀队">V字仇杀队</a>
+                <div class="evaluate"><div class="starts"></div></div>
             </strong>
           </li>
+
+
          <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
     					<img src="{% static 'img/action/77869.jpg' %}" alt="指环王：护戒使者">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film"  target="_blank" title="指环王：护戒使者">指环王：护戒使者</a>
+    					<a _boss="film" href="http://www.imdb.com/title/tt0077869/" target="_blank" title="指环王：护戒使者">指环王：护戒使者</a>
+                                        <div class="starts"></div>
     				</strong>
 		  </li>
 
@@ -99,7 +172,8 @@
     					<img src="{% static 'img/action/145487.jpg' %}" alt="蜘蛛侠">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt0145487/?ref_=nv_sr_3" target="_blank" title="蜘蛛侠">蜘蛛侠</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt0145487/" target="_blank" title="蜘蛛侠">蜘蛛侠</a>
+                         <div class="evaluate"><div class="starts"></div></div>
     				</strong>
 		  </li>
 
@@ -108,7 +182,8 @@
     					<img src="{% static 'img/action/371746.jpg' %}" alt="钢铁侠">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt0371746/?ref_=nv_sr_2" target="_blank" title="钢铁侠">钢铁侠</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt0371746/" target="_blank" title="钢铁侠">钢铁侠</a>
+                        <div class="evaluate"><div class="starts"></div></div>
     				</strong>
 		  </li>
 
@@ -118,6 +193,7 @@
     				</a>
     				<strong class="figure_title">
     					<a _boss="film" href="https://www.imdb.com/title/tt0499549/?ref_=nv_sr_2" target="_blank" title="阿凡达">阿凡达</a>
+                        <div class="evaluate"><div class="starts"></div></div>
     				</strong>
 		  </li>
 
@@ -127,6 +203,7 @@
     				</a>
     				<strong class="figure_title">
     					<a _boss="film" href="https://www.imdb.com/title/tt0113189/?ref_=nv_sr_1" target="_blank" title="黄金眼">黄金眼</a>
+                        <div class="evaluate"><div class="starts"></div></div>
     				</strong>
 		  </li>
 
@@ -136,6 +213,7 @@
             </a>
             <strong class="figure_title">
               <a _boss="film" href="https://www.imdb.com/title/tt4600952/?ref_=nv_sr_2" target="_blank" title="守护者：世纪战元">守护者：世纪战元</a>
+                <div class="evaluate"><div class="starts"></div></div>
             </strong>
           </li>
 
@@ -145,6 +223,7 @@
             </a>
             <strong class="figure_title">
               <a _boss="film" href="https://www.imdb.com/title/tt5481184/?ref_=nv_sr_1" target="_blank" title="封神传奇">封神传奇</a>
+                <div class="evaluate"><div class="starts"></div></div>
             </strong>
           </li>
 
@@ -154,6 +233,7 @@
             </a>
             <strong class="figure_title">
               <a _boss="film" href="https://www.imdb.com/title/tt4324274/?ref_=nv_sr_1" target="_blank" title="蝙蝠侠大战罗宾">蝙蝠侠大战罗宾</a>
+                <div class="evaluate"><div class="starts"></div></div>
             </strong>
           </li>
 
@@ -163,6 +243,7 @@
             </a>
             <strong class="figure_title">
               <a _boss="film" href="https://www.imdb.com/title/tt3672840/?ref_=fn_al_tt_1" target="_blank" title="天将雄狮">天将雄狮</a>
+                <div class="evaluate"><div class="starts"></div></div>
             </strong>
           </li>
 
@@ -173,38 +254,49 @@
             </a>
             <strong class="figure_title">
               <a _boss="film" href="https://www.imdb.com/title/tt3540136/?ref_=nv_sr_2" target="_blank" title="战狼">战狼</a>
+                <div class="evaluate"><div class="starts"></div></div>
             </strong>
           </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
             <a _boss="film" href="" target="_blank" class="figure" tabindex="-1">
-              <img src="{% static 'img/Action/12.jpg' %}" alt="饥饿游戏3：嘲笑鸟(上)">
+              <img src="{% static 'img/action/1229238.jpg' %}" alt="碟中谍4">
             </a>
             <strong class="figure_title">
-              <a _boss="film" href="video_12.html" target="_blank" title="饥饿游戏3：嘲笑鸟(上)">饥饿游戏3：嘲笑鸟(上)</a>
+              <a _boss="film" href="https://www.imdb.com/title/tt1229238" target="_blank" title="碟中谍4">碟中谍4</a>
+                <div class="evaluate"><div class="starts"></div></div>
             </strong>
           </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" href="" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'images/Action/13.jpg' %}" alt="神探驾到">
+    					<img src="{% static 'img/action/105859.jpg' %}" alt="新龙门客栈">
     				</a>
-            <image class="new_image" src="{% static 'img/new-blue.gif' %}"/>
     				<strong class="figure_title">
-    					<a _boss="film" href="" target="_blank" title="神探驾到">神探驾到</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt0105859" target="_blank" title="新龙门客栈">新龙门客栈</a>
+                        <div class="evaluate"><div class="starts"></div></div>
     				</strong>
 			    </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" href="" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'images/Action/14.jpg' %}" alt="钟馗伏魔：雪妖魔灵">
+    					<img src="{% static 'img/action/2186715.jpg' %}" alt="寒战">
     				</a>
-            <image class="new_image" src="{% static 'img/hot-yellow.gif' %}"/>
     				<strong class="figure_title">
-    					<a _boss="film" href="" target="_blank" title="钟馗伏魔：雪妖魔灵">钟馗伏魔：雪妖魔灵</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt2186715" target="_blank" title="寒战">寒战</a>
+                        <div class="evaluate"><div class="starts"></div></div>
     				</strong>
-			    </li>
+          </li>
 
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" href="" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/action/1298650.jpg' %}" alt="加勒比海盗4：惊涛怪浪">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film" href="https://www.imdb.com/title/tt1298650" target="_blank" title="加勒比海盗4：惊涛怪浪">加勒比海盗4：惊涛怪浪</a>
+                        <div class="evaluate"><div class="starts"></div></div>
+    				</strong>
+          </li>
         </ul>
       </div>
 
@@ -354,16 +446,6 @@
     				<strong class="figure_title">
     					<a _boss="film" href="https://www.imdb.com/title/tt89371/" target="_blank" title="僵尸先生">僵尸先生</a>
     				</strong>
-          </li>
-
-
-          <li class="list_item" data-trigger-class="list_item_hover">
-            <a _boss="film" href="video_7.html" target="_blank" class="figure" tabindex="-1">
-              <img src="{% static 'images/Adventure/21.jpg' %}" alt="永不失败的国家">
-            </a>
-            <strong class="figure_title">
-              <a _boss="film" href="video_7.html" target="_blank" title="永不失败的国家">永不失败的国家</a>
-            </strong>
           </li>
 
         </ul>
@@ -593,10 +675,10 @@
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film"  target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/animation/230011.jpg' %}" alt="亚特兰蒂斯：失落的帝国">
+    					<img src="{% static 'img/animation/245429.jpg' %}" alt="千与千寻">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="http://www.imdb.com/title/tt0230011/?ref_=fn_al_tt_1" target="_blank" title="亚特兰蒂斯：失落的帝国">亚特兰蒂斯：失落的帝国</a>
+    					<a _boss="film" href="http://www.imdb.com/title/tt0245429/" target="_blank" title="千与千寻">千与千寻</a>
     				</strong>
 		  </li>
 
@@ -708,10 +790,10 @@
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/science/1260502.jpg' %}" alt="攻壳机动队2">
+    					<img src="{% static 'img/science/2872732.jpg' %}" alt="超体">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt1260502/" target="_blank" title="攻壳机动队2">攻壳机动队2</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt2872732/" target="_blank" title="超体">超体</a>
     				</strong>
 		  </li>
 
@@ -851,135 +933,135 @@
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/crime/114369.jpg' %}" alt="七宗罪">
+    					<img src="{% static 'img/crime/111161.jpg' %}" alt="肖申克的救赎">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt114369/" target="_blank" title="七宗罪">七宗罪</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt111161/" target="_blank" title="肖申克的救赎">肖申克的救赎</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/crime/114369.jpg' %}" alt="七宗罪">
+    					<img src="{% static 'img/crime/2165735.jpg' %}" alt="毒战">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt114369/" target="_blank" title="七宗罪">七宗罪</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt2165735/" target="_blank" title="毒战">毒战</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/crime/114369.jpg' %}" alt="七宗罪">
+    					<img src="{% static 'img/crime/2267998.jpg' %}" alt="消失的爱人">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt114369/" target="_blank" title="七宗罪">七宗罪</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt2267998/" target="_blank" title="消失的爱人">消失的爱人</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/crime/114369.jpg' %}" alt="七宗罪">
+    					<img src="{% static 'img/crime/2990738.jpg' %}" alt="恐怖直播">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt114369/" target="_blank" title="七宗罪">七宗罪</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt2990738/" target="_blank" title="恐怖直播">恐怖直播</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/crime/114369.jpg' %}" alt="七宗罪">
+    					<img src="{% static 'img/crime/92263.jpg' %}" alt="英雄本色">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt114369/" target="_blank" title="七宗罪">七宗罪</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt0092263/" target="_blank" title="英雄本色">英雄本色</a>
     				</strong>
 		  </li>
 
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/crime/114369.jpg' %}" alt="七宗罪">
+    					<img src="{% static 'img/crime/209144.jpg' %}" alt="记忆碎片">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt114369/" target="_blank" title="七宗罪">七宗罪</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt0209144/" target="_blank" title="记忆碎片">记忆碎片</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/crime/114369.jpg' %}" alt="七宗罪">
+    					<img src="{% static 'img/crime/216165.jpg' %}" alt="暗战">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt114369/" target="_blank" title="七宗罪">七宗罪</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt0216165/" target="_blank" title="暗战">暗战</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/crime/114369.jpg' %}" alt="七宗罪">
+    					<img src="{% static 'img/crime/1067920.jpg' %}" alt="名侦探柯南：世纪末的魔术师">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt114369/" target="_blank" title="七宗罪">七宗罪</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt1067920/" target="_blank" title="名侦探柯南：世纪末的魔术师">名侦探柯南：世纪末的魔术师</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/crime/114369.jpg' %}" alt="七宗罪">
+    					<img src="{% static 'img/crime/1160629.jpg' %}" alt="嫌疑人x的献身">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt114369/" target="_blank" title="七宗罪">七宗罪</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt1160629/" target="_blank" title="嫌疑人x的献身">嫌疑人x的献身</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/crime/114369.jpg' %}" alt="七宗罪">
+    					<img src="{% static 'img/crime/439884.jpg' %}" alt="天下无贼">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt114369/" target="_blank" title="七宗罪">七宗罪</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt0439884/" target="_blank" title="天下无贼">天下无贼</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/crime/114369.jpg' %}" alt="七宗罪">
+    					<img src="{% static 'img/crime/137494.jpg' %}" alt="偷天陷阱">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt114369/" target="_blank" title="七宗罪">七宗罪</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt0137494/" target="_blank" title="偷天陷阱">偷天陷阱</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/crime/114369.jpg' %}" alt="七宗罪">
+    					<img src="{% static 'img/crime/110413.jpg' %}" alt="这个杀手不太冷">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt114369/" target="_blank" title="七宗罪">七宗罪</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt0110413/" target="_blank" title="这个杀手不太冷">这个杀手不太冷</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/crime/114369.jpg' %}" alt="七宗罪">
+    					<img src="{% static 'img/crime/4701702.jpg' %}" alt="老炮儿">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt114369/" target="_blank" title="七宗罪">七宗罪</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt4701702/" target="_blank" title="老炮儿">老炮儿</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/crime/114369.jpg' %}" alt="七宗罪">
+    					<img src="{% static 'img/crime/2820852.jpg' %}" alt="速度与激情7">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film" href="https://www.imdb.com/title/tt114369/" target="_blank" title="七宗罪">七宗罪</a>
+    					<a _boss="film" href="https://www.imdb.com/title/tt2820852/" target="_blank" title="速度与激情7">速度与激情7</a>
     				</strong>
 		  </li>
         </ul>
       </div>
 
 <!--爱情片-->
-<div class="tab-pane fade" id="tab6">
+     <div class="tab-pane fade" id="tab6">
         <ul class="figures_lists">
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
@@ -992,93 +1074,318 @@
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/love/211915.jpg' %}" alt="天使爱美丽">
+    					<img src="{% static 'img/love/109830.jpg' %}" alt="阿甘正传">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film"  href="https://www.imdb.com/title/tt0211915/" target="_blank" title="天使爱美丽">天使爱美丽</a>
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0109830/" target="_blank" title="阿甘正传">阿甘正传</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/love/211915.jpg' %}" alt="天使爱美丽">
+    					<img src="{% static 'img/love/120338.jpg' %}" alt="泰坦尼克号">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film"  href="https://www.imdb.com/title/tt0211915/" target="_blank" title="天使爱美丽">天使爱美丽</a>
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0120338/" target="_blank" title="泰坦尼克号">泰坦尼克号</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/love/211915.jpg' %}" alt="天使爱美丽">
+    					<img src="{% static 'img/love/106332.jpg' %}" alt="霸王别姬">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film"  href="https://www.imdb.com/title/tt0211915/" target="_blank" title="天使爱美丽">天使爱美丽</a>
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0106332/" target="_blank" title="霸王别姬">霸王别姬</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/love/211915.jpg' %}" alt="天使爱美丽">
+    					<img src="{% static 'img/love/99487.jpg' %}" alt="剪刀手爱德华">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film"  href="https://www.imdb.com/title/tt0211915/" target="_blank" title="天使爱美丽">天使爱美丽</a>
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0099487/" target="_blank" title="剪刀手爱德华">剪刀手爱德华</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/love/211915.jpg' %}" alt="天使爱美丽">
+    					<img src="{% static 'img/love/2036416.jpg' %}" alt="那些年，我们一起追的女孩">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film"  href="https://www.imdb.com/title/tt0211915/" target="_blank" title="天使爱美丽">天使爱美丽</a>
+    					<a _boss="film"  href="https://www.imdb.com/title/tt2036416/" target="_blank" title="那些年，我们一起追的女孩">那些年，我们一起追的女孩</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/love/211915.jpg' %}" alt="天使爱美丽">
+    					<img src="{% static 'img/love/3043630.jpg' %}" alt="小时代">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film"  href="https://www.imdb.com/title/tt0211915/" target="_blank" title="天使爱美丽">天使爱美丽</a>
+    					<a _boss="film"  href="https://www.imdb.com/title/tt3043630/" target="_blank" title="小时代">小时代</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/love/211915.jpg' %}" alt="天使爱美丽">
+    					<img src="{% static 'img/love/1055300.jpg' %}" alt="画皮">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film"  href="https://www.imdb.com/title/tt0211915/" target="_blank" title="天使爱美丽">天使爱美丽</a>
+    					<a _boss="film"  href="https://www.imdb.com/title/tt1055300/" target="_blank" title="画皮">画皮</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/love/211915.jpg' %}" alt="天使爱美丽">
+    					<img src="{% static 'img/love/808357.jpg' %}" alt="色戒">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film"  href="https://www.imdb.com/title/tt0211915/" target="_blank" title="天使爱美丽">天使爱美丽</a>
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0808357/" target="_blank" title="色戒">色戒</a>
     				</strong>
 		  </li>
 
           <li class="list_item" data-trigger-class="list_item_hover">
     				<a _boss="film" target="_blank" class="figure" tabindex="-1">
-    					<img src="{% static 'img/love/211915.jpg' %}" alt="天使爱美丽">
+    					<img src="{% static 'img/love/1010048.jpg' %}" alt="贫民窟的百万富翁">
     				</a>
     				<strong class="figure_title">
-    					<a _boss="film"  href="https://www.imdb.com/title/tt0211915/" target="_blank" title="天使爱美丽">天使爱美丽</a>
+    					<a _boss="film"  href="https://www.imdb.com/title/tt1010048/" target="_blank" title="贫民窟的百万富翁">贫民窟的百万富翁</a>
     				</strong>
 		  </li>
+
+
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/love/93978.jpg' %}" alt="倩女幽魂">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0093978/" target="_blank" title="倩女幽魂">倩女幽魂</a>
+    				</strong>
+		  </li>
+
+            <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/love/817177.jpg' %}" alt="怦然心动">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0817177/" target="_blank" title="怦然心动">怦然心动</a>
+    				</strong>
+		   </li>
+
+            <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/love/1194664.jpg' %}" alt="恋空">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt1194664/" target="_blank" title="恋空">恋空</a>
+    				</strong>
+		   </li>
+
+
+            <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/love/1554523.jpg' %}" alt="山楂树之恋">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt1554523/" target="_blank" title="山楂树之恋">山楂树之恋</a>
+    				</strong>
+		    </li>
+
+
+            <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/love/1859438.jpg' %}" alt="初恋这件小事">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt1859438/" target="_blank" title="初恋这件小事">初恋这件小事</a>
+    				</strong>
+		    </li>
+
+
+            <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/love/428870.jpg' %}" alt="我脑中的橡皮擦">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0428870/" target="_blank" title="我脑中的橡皮擦">我脑中的橡皮擦</a>
+    				</strong>
+		    </li>
+
+
         </ul>
       </div>
 
 
 
+{#      剧情片#}
+      <div class="tab-pane fade" id="tab7">
+        <ul class="figures_lists">
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/drama/458352.jpg' %}" alt="穿普拉达的女王">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0458352/" target="_blank" title="穿普拉达的女王">穿普拉达的女王</a>
+    				</strong>
+		  </li>
+
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/drama/454876.jpg' %}" alt="少年派的奇幻漂流">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0454876/" target="_blank" title="少年派的奇幻漂流">少年派的奇幻漂流</a>
+    				</strong>
+		  </li>
+
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/drama/1028532.jpg' %}" alt="忠犬八公的故事">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt1028532/" target="_blank" title="忠犬八公的故事">忠犬八公的故事</a>
+    				</strong>
+		  </li>
+
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/drama/120382.jpg' %}" alt="楚门的世界">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0120382/" target="_blank" title="楚门的世界">楚门的世界</a>
+    				</strong>
+		  </li>
+
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/drama/1410063.jpg' %}" alt="金陵十三钗 ">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt1410063/" target="_blank" title="金陵十三钗 ">金陵十三钗 </a>
+    				</strong>
+		  </li>
+
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/drama/110081.jpg' %}" alt="活着">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0110081/" target="_blank" title="活着">活着</a>
+    				</strong>
+		  </li>
+
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/drama/73486.jpg' %}" alt="飞越疯人院">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0073486/" target="_blank" title="飞越疯人院">飞越疯人院</a>
+    				</strong>
+		  </li>
+
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/drama/1285016.jpg' %}" alt="社交网络">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt1285016/" target="_blank" title="社交网络">社交网络</a>
+    				</strong>
+		  </li>
+
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/drama/1670345.jpg' %}" alt="惊天魔盗团">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt1670345/" target="_blank" title="惊天魔盗团">惊天魔盗团</a>
+    				</strong>
+		  </li>
+
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/drama/167404.jpg' %}" alt="第六感">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0167404/" target="_blank" title="第六感">第六感</a>
+    				</strong>
+		  </li>
+
+            <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/drama/166924.jpg' %}" alt="穆赫兰道">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0166924/" target="_blank" title="穆赫兰道">穆赫兰道</a>
+    				</strong>
+		  </li>
+
+
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/drama/405094.jpg' %}" alt="窃听风暴">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0405094/" target="_blank" title="窃听风暴">窃听风暴</a>
+    				</strong>
+		  </li>
+
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/drama/2582802.jpg' %}" alt="爆裂鼓手">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt2582802/" target="_blank" title="爆裂鼓手">爆裂鼓手</a>
+    				</strong>
+		  </li>
+
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/drama/1393746.jpg' %}" alt="唐山大地震">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt1393746/" target="_blank" title="唐山大地震">唐山大地震</a>
+    				</strong>
+		  </li>
+
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/drama/1707386.jpg' %}" alt="悲惨世界">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt1707386/" target="_blank" title="悲惨世界">悲惨世界</a>
+    				</strong>
+		  </li>
+
+          <li class="list_item" data-trigger-class="list_item_hover">
+    				<a _boss="film" target="_blank" class="figure" tabindex="-1">
+    					<img src="{% static 'img/drama/480249.jpg' %}" alt="我是传奇">
+    				</a>
+    				<strong class="figure_title">
+    					<a _boss="film"  href="https://www.imdb.com/title/tt0480249/" target="_blank" title="我是传奇">我是传奇</a>
+    				</strong>
+		  </li>
+
+
+        </ul>
+      </div>
 
 
 
 </div>
+
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <input type="submit" name = "viewResult" class="view" value="查看结果">
+
+        </form>
+{#<div class = "viewResult">#}
+{#    <button type = "submit">查看推荐结果</button>#}
+{#</div>#}
+
 
 	</body>
 </html>

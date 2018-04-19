@@ -1,0 +1,42 @@
+/*.content{*/
+    /*width: 600px;*/
+    /*margin:0 auto;*/
+    /*padding-top:20px;*/
+/*}*/
+		/* 重置文本格式元素 */
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color:#333333;
+    font-size:14px;
+}
+a:hover {
+    text-decoration: none;
+}
+.clearfix::after{
+    display:block;
+    content:'';
+    height:0;
+    overflow:hidden;
+    clear:both;
+}
+
+.block .star_score{
+    float:left;
+}
+
+.star_score {
+    background-image: url("../img/starky.png");
+    width:160px;
+    height:21px;
+    position:relative;
+}
+
+/*分数动态*/
+.star_score a{
+    height:21px;
+    display:block;
+    text-indent:-999em;
+    position:absolute;
+    left:0;
+}

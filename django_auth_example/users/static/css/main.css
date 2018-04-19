@@ -64,24 +64,6 @@ li {
     transform: translateY(-60%);
 }
 
-.star_bg {
-    width: 120px; height: 20px;
-    background: url(../img/star.jpg) repeat-x;
-    position: relative;
-    overflow: hidden;
-}
-.star {
-    height: 100%; width: 24px;
-    line-height: 6em;
-    position: absolute;
-    z-index: 3;
-}
-.star:hover {
-    background: url(../img/star.jpg) repeat-x 0 -20px!important;
-    left: 0; z-index: 2;
-}
-.star_1 { left: 0; }
-
 #user {
   padding-left: 10px;
   margin-top: 20px
@@ -117,6 +99,8 @@ li {
 #my-content:first-child {
   padding: 0;
 }
+
+
 .figure_title>a {
   display: block;
 }
@@ -143,4 +127,7 @@ li {
     width: 32%;
   }
 }
+
+
+
 
