@@ -28,3 +28,10 @@ def register(request):
 def index(request):
     return render(request, 'users/..//index.html')
 # 为啥？
+
+
+# def showregist(request):
+#     pass
+
+def recommend(request):
+    return render(request, 'users/movieRecommend.html')
