@@ -97,4 +97,11 @@
     4/20    
     由于之前创建表时，不小心将rating设为了int型，所以今天重新建了一张表改为DECIMAL，名为resultTable。而且增加了主键:id。    
     ‘alter table resultTable add column id int auto_increment PRIMARY KEY;’是给表增加一列并设为自增主键。    
-    现在前端页面已经可以获取图片的imbdId号和评分，接下来就是获取当前用户的名字，给他分一个从669开始的userId号。然后插入imdbId号和rating，调用算法进行分析。    
+    现在前端页面已经可以获取图片的imdbId号和评分，接下来就是获取当前用户的名字，给他分一个从669开始的userId号。然后插入imdbId号和rating，调用算法进行分析。    
+
+
+    4/25    
+    今天实现了可以从前端页面获取评分的电影的rating和imdbId号并存入users_resulttable中，还要解决的是给登录用户自动分配一个userId号，与他的评分相对应。    
+    之后要实现算法从数据库中获取数据得出推荐结果。现在没有存title，后面得出推荐结果了就通过查询imdbId号得到海报和title。    
+    还实现了index.html显示用户登录信息。    
+    重新根据model生产数据表要将所有的迁移文件都删除才能生成成功。

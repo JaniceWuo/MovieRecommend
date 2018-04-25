@@ -370,7 +370,7 @@ class ProxiesPriv(models.Model):
 
 class Ratings(models.Model):
     userid = models.IntegerField(db_column='userId')  # Field name made lowercase.
-    movieid = models.IntegerField(db_column='movieId')  # Field name made lowercase.
+    movieid = models.AutoField(db_column='movieId', primary_key=True)  # Field name made lowercase.
     rating = models.DecimalField(max_digits=3, decimal_places=1)
 
     class Meta:
@@ -388,13 +388,27 @@ class Result(models.Model):
         db_table = 'result'
 
 
+class Resulttable(models.Model):
+    movieid = models.IntegerField(db_column='movieId', blank=True, null=True)  # Field name made lowercase.
+    userid = models.IntegerField(db_column='userId', blank=True, null=True)  # Field name made lowercase.
+    rating = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
+    imdbid = models.IntegerField(db_column='imdbId')  # Field name made lowercase.
+    title = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'resulttable'
+
+    def __str__(self):
+        return self.userid+':'+self.rating
+
+
 class Rtotaltable(models.Model):
     movieid = models.IntegerField(db_column='movieId')  # Field name made lowercase.
     userid = models.IntegerField(db_column='userId')  # Field name made lowercase.
     rating = models.IntegerField(blank=True, null=True)
     imdbid = models.IntegerField(db_column='imdbId')  # Field name made lowercase.
     title = models.CharField(max_length=50)
-    id = models.IntegerField(db_column="id",primary_key=True)
 
     class Meta:
         managed = False

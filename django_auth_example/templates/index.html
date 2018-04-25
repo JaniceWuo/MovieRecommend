@@ -38,10 +38,9 @@
 		<title>推荐系统主页</title>
 {#		<link rel="stylesheet" href="{% static 'css/Test.css' %}" >#}
         <link rel ="stylesheet" href="{% static 'css/main.css' %}">
-        <link rel ="stylesheet" href="{% static 'css/demo.css' %}">
+{#        <link rel ="stylesheet" href="{% static 'css/demo.css' %}">#}
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-
 
 
         <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
@@ -55,7 +54,7 @@
 
         <script type="text/javascript" src="{% static 'js/jquery.raty.js' %}"></script>
 {#		<script type="text/javascript" src="js/Star.js" ></script>#}
-        <script type="text/javascript" src="{% static 'js/GetText.js' %}"></script>
+{#        <script type="text/javascript" src="{% static 'js/GetText.js' %}"></script>#}
         <style>
 {#.evaluate{#}
 {#    width:100%;#}
@@ -68,7 +67,7 @@
 	</head>
 
 	<body>
-		<h1>电影分类界面</h1>
+{#		<h2>电影分类</h2>#}
 
 
 
@@ -88,7 +87,7 @@
             half:true,
             round:{down:.26,full:.7,up:.9},
             click : function(score, evt) {
-                $("#grade").val(score);
+
                 if((score<0.5)) result = 0.5;
                 else if((score>0.51)&&(score<1.0)) result = 1.0;
                 else if((score>1.1)&&(score<1.5)) result = 1.5;
@@ -98,14 +97,56 @@
                 else if((score>3.0)&&(score<3.5)) result = 3.5;
                 else if((score>3.5)&&(score<4.0)) result = 4.0;
                 else if((score>4.0)&&(score<4.5)) result = 4.5;
-                else if((score>4.5)&&(score<5)) result = 5.0;
+                else  result = 5.0;
+
+                $("#rating").val(result.toFixed(1));
                 alert(result.toFixed(1));
             }
         });
 
     });
+    $(document).ready(function(){
+    $(".starts").click(function(){
+        $("#imdbId").val(this.id);
+    alert(this.id);
+  });
+});
+
+
 
 </script>
+
+<div class="flex-center">
+    <div class="container_">
+        <div>
+            {% if user.is_authenticated %}
+                <p>您已登录，欢迎您：<a href="#">{{ user.username }}</a></p>
+            {% else %}
+                <p>您还没有登录，请
+                    <button class="btn btn-default"><a href="{% url 'login' %}">登录</a></button>
+                    或者
+                    <button class="btn btn-default"><a href="{% url 'users:register' %}">注册</a></button>
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+   <form action="/insert/" method="get">
+{#       movieId: <input type="text" name="movieId" id = "movieId"> <br>#}
+       userId:<input type="text" name="userId" id = "userId"> <br>
+       rating: <input type="text" name="rating"  id = "rating"> <br>
+       imdbId: <input type="text" name="imdbId" id = "imdbId"> <br>
+       <input type="submit" value="提交到MySQL">
+   </form>
+
+        <p>
+        {% if rating  and imdbidId %}
+             <script>alert("Insert into MySQL already!Please check MySQL")</script>
+        {% endif %}
+        </p>
+
 
     <div>
       <hr />

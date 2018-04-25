@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm
+from users.models import MYBOOK,Resulttable
+from django.db import models
 
 def register(request):
     # 只有当请求为 POST 时，才表示用户提交了注册信息
@@ -35,3 +37,33 @@ def index(request):
 
 def recommend(request):
     return render(request, 'users/movieRecommend.html')
+
+
+def insert(request):
+    # try:
+    #     MOVIEID = request.POST["movieid"]
+    #     USERID = request.POST["userid"]
+    #     RATING = request.POST["rating"]
+    #     IMDBID = request.POST["imdbid"]
+    # except KeyError:
+    #     MOVIEID = '0'
+    #     USERID = "0"
+    #     RATING = "0"
+    #     IMDBID = "0"
+    #     # MOVIEID = "Guest"
+    #     # USERID = "Guest"
+    #     # RATING = "Guest"
+    #     # IMDBID = "Guest"
+    # MOVIEID = int(request.GET["movieId"])
+    USERID = int(request.GET["userId"])
+    RATING = float(request.GET["rating"])
+    IMDBID = int(request.GET["imdbId"])
+    # MOVIEID = request.POST.get("movieId")
+    # USERID = request.POST.get("userId")
+    # RATING = request.POST.get("rating")
+    # IMDBID = request.POST.get("imdbId",'0')
+    # NAME = request.GET['name']
+    # PRICE = float(request.GET['price'])
+    Resulttable.objects.create(userId = USERID,rating = RATING,imdbId = IMDBID)
+    # return render(request,'index.html', {'name':NAME, 'price': PRICE})
+    return render(request, 'index.html',{'userId':USERID,'rating':RATING,'imdbId':IMDBID})
