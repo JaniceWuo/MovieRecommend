@@ -100,7 +100,7 @@
                 else  result = 5.0;
 
                 $("#rating").val(result.toFixed(1));
-                alert(result.toFixed(1));
+                {#alert(result.toFixed(1));#}
             }
         });
 
@@ -108,10 +108,12 @@
     $(document).ready(function(){
     $(".starts").click(function(){
         $("#imdbId").val(this.id);
-    alert(this.id);
+         $("#userId").val({{ user.id}});
+    {#alert(this.id);#}
   });
 });
 
+    {#alert({{ user.id }})#}
 
 
 </script>
@@ -121,6 +123,7 @@
         <div>
             {% if user.is_authenticated %}
                 <p>您已登录，欢迎您：<a href="#">{{ user.username }}</a></p>
+{#                <p>您已登录，欢迎您：<a href="#">{{ user.id }}</a></p>#}
             {% else %}
                 <p>您还没有登录，请
                     <button class="btn btn-default"><a href="{% url 'login' %}">登录</a></button>
@@ -132,6 +135,9 @@
     </div>
 </div>
 
+
+
+<br/>
 
    <form action="/insert/" method="get">
 {#       movieId: <input type="text" name="movieId" id = "movieId"> <br>#}
