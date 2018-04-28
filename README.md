@@ -104,4 +104,25 @@
     今天实现了可以从前端页面获取评分的电影的rating和imdbId号并存入users_resulttable中，还要解决的是给登录用户自动分配一个userId号，与他的评分相对应。    
     之后要实现算法从数据库中获取数据得出推荐结果。现在没有存title，后面得出推荐结果了就通过查询imdbId号得到海报和title。    
     还实现了index.html显示用户登录信息。    
-    重新根据model生产数据表要将所有的迁移文件都删除才能生成成功。
+    重新根据model生产数据表要将所有的迁移文件都删除才能生成成功。    
+
+    4/26    
+    实现了给每个用户分配一个id，其实是在原有的user.id基础上加1000.    
+    然后将算法导入pycharm，并且实现了可以将mysql数据表导出为csv文件。    
+    现在的Mysql表是user_resulttable，同csv文件，csv文件导出到static下。明天的任务是通过按钮将其连贯起来。    
+
+    4/27    
+    poster2从moviegenre7.txt导入。    
+    对users_resulttable的处理：    
+    alter table users_resulttable drop column id;    
+    load data local infile "e:/Moviedatabase/rrtotaltable.csv" into table users_resulttable fields terminated by ','    
+    lines terminated by '\n'    
+    (userId,imdbId,rating);    
+    alter table users_resulttable add column id int auto_increment PRIMARY KEY;     
+    费劲周折终于实现了从数据库里获取海报链接并且显示在Html上。    
+    但是，还没有实现从recommend函数得到的imdbId中查询到poster再显示。可能要将imdbId存到数组里再循环查询。    
+    而且还有个问题，就是现在页面一刷新数据库里就会出现重复的值。    
+
+    4/28    
+    有个最大的问题，现在imdbId和poster对应的表不完整，很多推荐出来的ImdbId号找不到电影海报。    
+    必须要解决这个问题，而且最好增加title。现已解决select查询语句遍历recommend函数输出的数组。
