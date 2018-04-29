@@ -50,6 +50,7 @@ class Resulttable(models.Model):
 
 class Insertposter(models.Model):
     userId = models.IntegerField(null=True)
+    title = models.CharField(max_length=200,blank=True,null = False)
     poster = models.CharField(max_length=500, blank=True, null=True)
 
     def __str__(self):

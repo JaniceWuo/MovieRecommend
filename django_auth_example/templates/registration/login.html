@@ -30,6 +30,7 @@
                         {% endif %}
                     {% endfor %}
                     <button type="submit" class="btn btn-primary btn-block">登录</button>
+                    <input type="hidden" name="next" value="{{ next }}"/>
                 </form>
                 <div class="flex-left top-gap text-small">
                     <div class="unit-2-3"><span>没有账号？<a href="{% url 'users:register' %}">立即注册</a></span></div>

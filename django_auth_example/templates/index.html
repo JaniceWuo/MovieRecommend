@@ -36,8 +36,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>推荐系统主页</title>
-{#		<link rel="stylesheet" href="{% static 'css/Test.css' %}" >#}
-        <link rel ="stylesheet" href="{% static 'css/main.css' %}">
+		<link rel="stylesheet" href="{% static 'css/firstPage.css' %}" >
+{#        <link rel ="stylesheet" href="{% static 'css/main.css' %}">#}
 {#        <link rel ="stylesheet" href="{% static 'css/demo.css' %}">#}
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
@@ -56,13 +56,7 @@
 {#		<script type="text/javascript" src="js/Star.js" ></script>#}
 {#        <script type="text/javascript" src="{% static 'js/GetText.js' %}"></script>#}
         <style>
-{#.evaluate{#}
-{#    width:100%;#}
-{#}#}
-{##starts{#}
-{#    width:140px;#}
-{#    float:left;#}
-{#}#}
+
 </style>
 	</head>
 
@@ -122,8 +116,11 @@
     <div class="container_">
         <div>
             {% if user.is_authenticated %}
-                <p>您已登录，欢迎您：<a href="#">{{ user.username }}</a></p>
-{#                <p>您已登录，欢迎您：<a href="#">{{ user.id }}</a></p>#}
+                <div class = "login_">
+                 <p>您已登录，欢迎您：<a href="#">{{ user.username }}</a></p>
+                <button class="btn btn-default"><a href="{% url 'logout' %}?next={{ request.path }}">注销登录</a></button>
+                </div>
+
             {% else %}
                 <p>您还没有登录，请
                     <button class="btn btn-default"><a href="{% url 'login' %}">登录</a></button>
@@ -132,6 +129,7 @@
                 </p>
             {% endif %}
         </div>
+
     </div>
 </div>
 
@@ -139,17 +137,17 @@
 
 <br/>
 
-   <form action="/insert/" method="get">
+   <form action="/insert" method="get">
 {#       movieId: <input type="text" name="movieId" id = "movieId"> <br>#}
-       userId:<input type="text" name="userId" id = "userId"> <br>
-       rating: <input type="text" name="rating"  id = "rating"> <br>
-       imdbId: <input type="text" name="imdbId" id = "imdbId"> <br>
+       用户id:<input type="text" name="userId" id = "userId"> <br>
+       评分: <input type="text" name="rating"  id = "rating"> <br>
+       电影ImdbId: <input type="text" name="imdbId" id = "imdbId"> <br>
        <input type="submit" value="提交到MySQL">
    </form>
 
         <p>
-        {% if rating  and imdbidId %}
-             <script>alert("Insert into MySQL already!Please check MySQL")</script>
+        {% if rating  and imdbId %}
+{#             <script>alert("Insert into MySQL already!Please check MySQL")</script>#}
         {% endif %}
         </p>
 

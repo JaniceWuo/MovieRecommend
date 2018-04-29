@@ -130,10 +130,17 @@ li {
 
 
 
-.container_{
-    position:absolute;
+/*.container_{*/
+    /*position:absolute;*/
+/*}*/
+.btn .zhuxiao{
+    position: absolute;
+    right: 0px;
 }
 
+/*.login_{*/
+    /*position: absolute;*/
+/*}*/
 
 
 

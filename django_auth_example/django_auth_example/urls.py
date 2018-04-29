@@ -24,5 +24,5 @@ urlpatterns = [
     url(r'^users/', include('django.contrib.auth.urls')),
     url(r'^$', views.index, name='index'),
     url(r'^insert/$', insert),
-    url(r'^insert/users/recommend/$', views.recommend),
+    url(r'^users/recommend/$', views.recommend),
 ]

@@ -3,20 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>推荐电影页面</title>
+
+    <style>
+
+        li{
+            list-style: none;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
 <h1>为您推荐的10部电影如下：</h1>
 {% for result in results %}
-{#<p>{{ result.poster }}</p>#}
-<img src="{{ result.poster }}" alt="">
+    <li>
+        <p>{{ result.title }}</p>
+        <img src="{{ result.poster }}" alt="">
+    </li>
+
 {%  endfor %}
 
-
-<li>电影1</li>
-
-<li>电影2</li>
-<li>电影3</li>
-<li>电影4</li>
-<li>电影5</li>
 </body>
 </html>

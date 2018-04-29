@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,HttpResponseRedirect
 from .forms import RegisterForm
 from users.models import Resulttable,Insertposter
 from django.db import models
@@ -37,7 +37,7 @@ def index(request):
 
 USERID = 1001
 def recommend(request):
-
+    Insertposter.objects.filter(userId=USERID).delete()
     #selectMysql()
     read_mysql_to_csv('users/static/users_resulttable.csv')
     ratingfile2 = os.path.join('users/static', 'users_resulttable.csv')
@@ -49,17 +49,23 @@ def recommend(request):
     usercf.calc_user_sim()
     usercf.recommend(userid)    #得到imdbId号
 
+    #先删除所有数据
+
 
     try:
         conn = get_conn()
         cur = conn.cursor()
-        cur.execute("select * from poster2 where imdbId = 3")
-        #print(cur.fetchall())
-        rr = cur.fetchall()
-        #print(rr)
-        for key,value in rr:
-            #print(value)         #value才是真正的海报链接
-            Insertposter.objects.create(userId = USERID,poster=value)
+        #Insertposter.objects.filter(userId=USERID).delete()
+        for i in matrix:
+            cur.execute('select * from moviegenre3 where imdbId = %s',i)
+            rr = cur.fetchall()
+            for imdbId,title,poster in rr:
+                #print(value)         #value才是真正的海报链接
+                if(Insertposter.objects.filter(title=title)):
+                    continue
+                else:
+                    Insertposter.objects.create(userId=USERID, title=title, poster=poster)
+
         # print(poster_result)
     finally:
         conn.close()
@@ -78,20 +84,21 @@ def insert(request):
     Resulttable.objects.create(userId = USERID,rating = RATING,imdbId = IMDBID)  #数据插入mysql中
     # return render(request,'index.html', {'name':NAME, 'price': PRICE})
     #print(USERID)
-    return render(request, 'index.html',{'userId':USERID,'rating':RATING,'imdbId':IMDBID})
+    return HttpResponseRedirect('/')
+    #return render(request, 'index.html',{'userId':USERID,'rating':RATING,'imdbId':IMDBID})
 
 
-def selectMysql(request):
-    try:
-        conn = get_conn()
-        cur = conn.cursor()
-        sql = 'select poster from poster2 where imdbId = 3'
-        poster_result = query_all(cur=cur, sql=sql, args=None)  #poster_result即为电影海报链接
-        Insertposter.objects.create(userId = USERID,poster=poster_result)
-        print(poster_result)
-    finally:
-        conn.close()
-
+# def selectMysql(request):
+#     try:
+#         conn = get_conn()
+#         cur = conn.cursor()
+#         sql = 'select poster from poster2 where imdbId = 3'
+#         poster_result = query_all(cur=cur, sql=sql, args=None)  #poster_result即为电影海报链接
+#         Insertposter.objects.create(userId = USERID,poster=poster_result)
+#         print(poster_result)
+#     finally:
+#         conn.close()
+#
 
 
 
@@ -144,7 +151,7 @@ from operator import itemgetter
 
 random.seed(0)
 user_sim_mat = {}
-
+matrix = []  #全局变量
 
 class UserBasedCF(object):
     ''' TopN recommendation - User Based Collaborative Filtering '''
@@ -264,8 +271,10 @@ class UserBasedCF(object):
         # print ('Total similarity factor number = %d' %
         #        simfactor_count, file=sys.stderr)
 
+
     def recommend(self, user):
         ''' Find K similar users and recommend N movies. '''
+        matrix.clear()   #每次都要清空
         K = self.n_sim_user  # 这里等于20
         N = self.n_rec_movie  # 这里等于10
         rank = dict()  # 用户对电影的兴趣度
@@ -288,10 +297,11 @@ class UserBasedCF(object):
        # rank_ = dict()
         rank_ = sorted(rank.items(), key=itemgetter(1), reverse=True)[0:N]  #类型是list不是字典了
         for key,value in rank_:
-            print(key)     #得到了推荐的电影的imdbid号
-        #print(rank_)
+            matrix.append(key)    #matrix为存储推荐的imdbId号的数组
+            #print(key)     #得到了推荐的电影的imdbid号
+        print(matrix)
         #return sorted(rank.items(), key=itemgetter(1), reverse=True)[0:N]
-        return key
+        return matrix
 
     def evaluate(self):
         ''' print evaluation result: precision, recall, coverage and popularity '''
