@@ -73,6 +73,9 @@
     $(function(){
         $(".starts").raty({
             number : 5,//星星个数
+
+
+            {#score :3,#}
             path : '{% static 'img' %}',//图片路径
             {#target : '#grade',//#}
             {#hints : ['0.5','1','1.5','2','2.5','3','3.5','4','4.5','5'],#}
@@ -95,8 +98,11 @@
 
                 $("#rating").val(result.toFixed(1));
                 {#alert(result.toFixed(1));#}
+
             }
         });
+
+
 
     });
     $(document).ready(function(){
@@ -105,6 +111,7 @@
          $("#userId").val({{ user.id}});
     {#alert(this.id);#}
   });
+$("#103776").raty('set', { option: 3.0 });
 });
 
     {#alert({{ user.id }})#}
@@ -137,17 +144,19 @@
 
 <br/>
 
-   <form action="/insert" method="get">
+   <form action="/insert" method="get" target="nm_iframe">
 {#       movieId: <input type="text" name="movieId" id = "movieId"> <br>#}
-       用户id:<input type="text" name="userId" id = "userId"> <br>
+       <input type="hidden" name="userId" id = "userId"> <br>
        评分: <input type="text" name="rating"  id = "rating"> <br>
        电影ImdbId: <input type="text" name="imdbId" id = "imdbId"> <br>
-       <input type="submit" value="提交到MySQL">
+       <input type="submit" value="提交评分">
    </form>
+<iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+{#实现不刷新#}
 
         <p>
-        {% if rating  and imdbId %}
-{#             <script>alert("Insert into MySQL already!Please check MySQL")</script>#}
+        {% if rating  and imdbidId %}
+             <script>alert("Insert into MySQL already!Please check MySQL")</script>
         {% endif %}
         </p>
 
@@ -1420,6 +1429,7 @@
             <input type="submit" name = "viewResult" class="view" value="查看结果">
 
         </form>
+{#<iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>#}
 {#<div class = "viewResult">#}
 {#    <button type = "submit">查看推荐结果</button>#}
 {#</div>#}

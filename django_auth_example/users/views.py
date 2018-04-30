@@ -39,7 +39,7 @@ USERID = 1001
 def recommend(request):
     Insertposter.objects.filter(userId=USERID).delete()
     #selectMysql()
-    read_mysql_to_csv('users/static/users_resulttable.csv')
+    read_mysql_to_csv('users/static/users_resulttable.csv',USERID)  #追加数据，提高速率
     ratingfile2 = os.path.join('users/static', 'users_resulttable.csv')
     usercf = UserBasedCF()
     #userid = '1001'
@@ -72,7 +72,7 @@ def recommend(request):
     results = Insertposter.objects.all()       #从这里传递给html= Insertposter.objects.all()  # 从这里传递给html
 
     return render(request, 'users/movieRecommend.html',locals())
-
+    # return HttpResponseRedirect('movieRecommend.html', locals())
 
 def insert(request):
     # MOVIEID = int(request.GET["movieId"])
@@ -81,8 +81,20 @@ def insert(request):
     # USERID = {{}}
     RATING = float(request.GET["rating"])
     IMDBID = int(request.GET["imdbId"])
-    Resulttable.objects.create(userId = USERID,rating = RATING,imdbId = IMDBID)  #数据插入mysql中
-    # return render(request,'index.html', {'name':NAME, 'price': PRICE})
+
+    # conn = get_conn()
+    # cur = conn.cursor()
+    # cur.execute('select * from users_resulttable where userId = %s', USERID)
+    # rr = cur.fetchall()
+    #
+    # if(Resulttable.objects.filter(userId=USERID)):
+    #     for userId, imdbId, rating,id in rr:
+    #         if (Resulttable.objects.filter(imdbId=IMDBID)):
+    #             continue
+    #         else:
+    #             Resulttable.objects.create(userId = USERID,imdbId = IMDBID,rating = RATING)  #数据插入mysql中
+    # else:
+    Resulttable.objects.create(userId=USERID, rating=RATING,imdbId=IMDBID)
     #print(USERID)
     return HttpResponseRedirect('/')
     #return render(request, 'index.html',{'userId':USERID,'rating':RATING,'imdbId':IMDBID})
@@ -122,17 +134,31 @@ def query_all(cur, sql, args):
     cur.execute(sql, args)
     return cur.fetchall()
 
-def read_mysql_to_csv(filename):
+def read_mysql_to_csv(filename,user):
+    # with codecs.open(filename=filename, mode='a', encoding='utf-8') as f:
+    #     write = csv.writer(f, dialect='excel')
+    #     conn = get_conn()
+    #     cur = conn.cursor()
+    #     cur.execute('select * from users_resulttable WHERE userId = %s',user)
+    #     #sql = ('select * from users_resulttable WHERE userId = 1001')
+    #     rr = cur.fetchall()
+    #     #results = query_all(cur=cur, sql=sql, args=None)
+    #     for result in rr:
+    #         print(result)
+    #         write.writerow(result[:-1])
+
+
     with codecs.open(filename=filename, mode='w', encoding='utf-8') as f:
         write = csv.writer(f, dialect='excel')
         conn = get_conn()
         cur = conn.cursor()
-        sql = 'select * from users_resulttable'
-        results = query_all(cur=cur, sql=sql, args=None)
-        for result in results:
-            print(result)
+        cur.execute('select * from users_resulttable')
+        #sql = ('select * from users_resulttable WHERE userId = 1001')
+        rr = cur.fetchall()
+        #results = query_all(cur=cur, sql=sql, args=None)
+        for result in rr:
+            #print(result)
             write.writerow(result[:-1])
-
 
 
 
