@@ -1,6 +1,23 @@
 # MovieRecommend  
 一个电影推荐系统，毕业设计   
 
+# 系统实现工具
+  1.pycharm    
+  2.python3.6+django1.11    
+  3.mysql    
+  4.jquery+css+html5    
+
+# 如何使用    
+  首先将项目克隆到本地，用pycharm打开，将用到的csv文件导入mysql数据表中，配置好数据库；    
+  注意数据库相关代码可能都要进行修改以符合实际情况；    
+  代码完成后要进行migration，最后python manage.py runserver就能在浏览器中打开
+
+# 系统流程    
+  用户登录系统，对电影进行评分，查看自己已评价电影，查看推荐结果(两种)    
+
+# 论文    
+  本科毕业论文已上传，关于推荐系统的介绍、展示都在论文中，有需要者可阅读
+
 ***
 **笔记**  
     2018年2月18日 寒假过的好快啊，前一阵子准备用flask，但是后面进一步了解之后决定用django+mysql+python完成这个推荐系统，现在就在懵懵懂懂的学django    
@@ -15,7 +32,6 @@
     但是pycharm里面安装的是最新版本2.0，导致项目文件自带的代码有错误。后来又卸了重新安装，统一成了1.11.0版本。    
     接下来是mysql，项目迁移如下：
 
-![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/images/databaseMigration.jpg)
     
    这只是生成了迁移文件，还要执行迁移文件
    ```python
@@ -62,8 +78,7 @@
        <link rel="stylesheet" href="{% static 'css/Test.css' %}">
     ```    
     如果纯粹像写前端那样调用css、js是不能成功的。    
-    输入'http://127.0.0.1:8000/users/login/'，  返回用户登录界面：    
-    ![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/images/login.jpg)    
+    输入'http://127.0.0.1:8000/users/login/'，  返回用户登录界面       
     点击登录后进入推荐系统首页（目前的首页只有一个电影分类页面，之后应增加分页，以及实现用户对电影评分，数据库记录用户对电影的评分）    
 
     2018/4/12    
@@ -84,8 +99,7 @@
     mysql->CREATE TABLE RTotalTable(movieId INT NOT NULL,userId INT NOT NULL,rating INT,imdbId INT NOT NULL,title varchar(50) NOT NULL);
     mysql->INSERT INTO RTotalTable SELECT *FROM(SELECT * from ratings natural join result) AS tb; //将ratings和result两张表连接后插入建好的RTotalTable表中。    
     得到的最终表如下图所示，可以直接从这张表中得到用户信息及对电影的评分，然后获得推荐电影的id或者名字，通过imdbId可以获取到本地的电影海报。
-  
-  ![image](https://github.com/JaniceWuo/MovieRecommend/blob/master/djangostuding/images/RTotalTable.JPG)    
+      
     昨天通过python下载图片时用的电影名字命名，这样过一会就异常了，原因同上，title里面含‘？’或者‘/’都会出错，所以今天改用imdbId.jpg来存图片。    
 
 
