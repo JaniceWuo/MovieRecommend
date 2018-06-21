@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>推荐电影页面</title>
+
+    <style>
+
+        li{
+            list-style: none;
+            display: inline-block;
+        }
+
+        #recommend2{
+                position:absolute;
+                left:700px;
+                background-color: #008CBA;
+                color: white;
+                padding: 5px 12px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+
+    </style>
+</head>
+<body>
+<h1>和您有相似兴趣的用户也喜欢下列电影：</h1>
+{% for result in results %}
+    <li>
+        <p>{{ result.title }}</p>
+        <img src="{{ result.poster }}" alt="">
+    </li>
+
+{%  endfor %}
+
+        <form action="users/recommend1/recommend2/" method="get">
+            {% csrf_token %}
+            <input type="hidden" name="userIddd" id = "userId3">
+            <input type="submit" name = "viewResult" class="view"  id = "recommend2" value="查看推荐结果">
+        </form>
+
+
+</body>
+</html>

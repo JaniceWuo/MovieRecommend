@@ -136,4 +136,10 @@
     提高了一点运行速度。    
     
     5/2    
-    今天写完了ItemCF,但其实性能比UserCF差。因为电影数据集的电影数量比用户多太多。
+    今天写完了ItemCF,但其实性能比UserCF差。因为电影数据集的电影数量比用户多太多。    
+
+    5/7    
+    今天登入数据库出现了问题，一直登不进去。后面重新建了数据库，重设置了密码。    
+    数据库名改为'haha'，端口号为3307，要删除迁移文件重新执行迁移。    
+     CREATE TABLE moviegenre3(imdbId INT NOT NULL PRIMARY KEY,title varchar(300),poster varchar(600));    
+     然后通过navicat将moviegenre3.csv自动导入。

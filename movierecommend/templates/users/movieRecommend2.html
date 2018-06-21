@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>推荐电影页面</title>
+
+        <style>
+
+        li{
+            list-style: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<h1>和您喜欢的电影相似的有下列电影：</h1>
+{% for result in results %}
+    <li>
+        <p>{{ result.title }}</p>
+        <img src="{{ result.poster }}" alt="">
+    </li>
+
+{%  endfor %}
+</body>
+</html>
