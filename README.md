@@ -1,6 +1,20 @@
 # MovieRecommend  
 一个电影推荐系统，毕业设计   
 
+***
+##写在前面的话    
+  距我的毕业设计完成其实已经过去半年时间了，所以很多实现细节我也记不清楚了。    
+  鉴于有同学在issues向我提问，而且提的是很细节的问题，对此我不予回复与解答，望理解。    
+  还有就是希望大家不要copy到本地修改后直接当做自己的毕业设计，    
+  因为中间有很多地方你不去学一下是调不通程序的。我完成毕业设计的时间线可以参考文末的“笔记”。    
+
+  下面贴出我在做这个电影推荐系统过程中收藏的部分资料链接，希望对大家有帮助。    
+  [Window 下 MySQL 5.6.15 下载安装及使用](https://blog.csdn.net/wtfmonking/article/details/17467399)    
+  [Python3 MySQL 数据库连接](http://www.runoob.com/python3/python3-mysql.html)    
+  [协同过滤算法](https://blog.csdn.net/acdreamers/article/details/44672305)    
+  [django](https://www.cnblogs.com/fengbo1113/p/8547302.html)    
+  [Django用户登录与注册](https://blog.csdn.net/xiaoxujohna/article/details/51210186)  
+
 ## 系统实现工具
   1.pycharm    
   2.python3.6+django1.11    
