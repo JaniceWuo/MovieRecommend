@@ -22,9 +22,9 @@
 4.Jquery+CSS3+Html5    
 
 ## 系统流程    
-用户注册、登录系统，对看过的电影进行评分，点击提交评分按钮，再点击查看推荐按钮即可看见推荐的电影列表。项目主界面如下：<br/>
+用户注册、登录系统，对看过的电影进行评分，点击提交评分按钮，再点击查看推荐按钮即可看见推荐的电影列表。项目主页以及推荐结果如下：<br/>
 ![img](https://github.com/JaniceWuo/MovieRecommend/blob/master/img/home.jpg)
-
+![img](https://github.com/JaniceWuo/MovieRecommend/blob/master/img/recommend.jpg)
 
 
 
@@ -81,8 +81,8 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 ***
-   2018/4/8    
-   进行一下流程梳理：   
+2018/4/8    
+进行一下流程梳理：   
    1.先启动mysql:net start mysql;mysql -u root -p;    
    2. create database [数据库名字];<br/>
    3.pycharm直接创建一个django项目，然后进入这个项目下<br/> 
@@ -105,9 +105,10 @@ python manage.py migrate
    8.在mysql>中：use [数据库名];  show tables;    
      在项目文件下，python manage.py runserver  浏览器中输入127.0.0.1:8000    
    9.在templates下写html文件，然后和views.py视图文件、urls.py文件进行匹配    
-***
-   2018/4/10    
-   今天搭建了django的虚拟开发环境，安装了virtualenv，一定要保证整个项目都在虚拟环境中运行。 django1.11.1  
+
+
+2018/4/10    
+今天搭建了django的虚拟开发环境，安装了virtualenv，一定要保证整个项目都在虚拟环境中运行。 django1.11.1  
    关于html文件调用js、css等文件：首先在建的app目录下建一个static文件，分支如下   
    ├─migrations    
 │  └─__pycache__    
@@ -131,7 +132,6 @@ python manage.py migrate
 2018/4/13<br/>    
 注意result表里面要存电影的名字，而名字里面很多不确定的特殊符号，比如有逗号，冒号等。所以不能加enclosed by '"'这句，否则csv导进mysql表时会中断。    
 
-
 4/14 <br/>   
 今天做的很少，主要都去看深度学习视频了，为以后的研究生项目扫盲。    
 主要还是csv和Mysql的问题，不知道要怎么去遍历里面的数据。之前是自己模拟的几个用户对电影进行评分，用的是列表类型，我就想能不能读取csv然后转为列表再操作。    
@@ -141,7 +141,6 @@ python manage.py migrate
 由于之前创建表时，不小心将rating设为了int型，所以今天重新建了一张表改为DECIMAL，名为resultTable。而且增加了主键:id。    
 ‘alter table resultTable add column id int auto_increment PRIMARY KEY;’是给表增加一列并设为自增主键。    
 现在前端页面已经可以获取图片的imdbId号和评分，接下来就是获取当前用户的名字，给他分一个从669开始的userId号。然后插入imdbId号和rating，调用算法进行分析。    
-
 
 4/25    
 今天实现了可以从前端页面获取评分的电影的rating和imdbId号并存入users_resulttable中，还要解决的是给登录用户自动分配一个userId号，与他的评分相对应。    
