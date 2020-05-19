@@ -17,15 +17,15 @@
   [Django用户登录与注册](https://blog.csdn.net/xiaoxujohna/article/details/51210186)  
 
 ## 系统实现工具
-  1.pycharm    
-  2.python3.6+django1.11    
-  3.mysql    
-  4.jquery+css+html5    
+1.pycharm    
+2.python3.6+django1.11    
+3.mysql    
+4.jquery+css+html5    
 
 ## 如何使用    
-  首先将项目克隆到本地，用pycharm打开，将用到的csv文件导入mysql数据表中，[数据库建表处理](#database）配置好数据库；    
-  注意数据库相关代码可能都要进行修改以符合实际情况；    
-  代码完成后要进行migration，最后python manage.py runserver就能在浏览器中打开
+首先将项目克隆到本地，用pycharm打开，将用到的csv文件导入mysql数据表中，见<a href="#database">数据库建表</a> ，配置好数据库；    
+注意数据库相关代码可能都要进行修改以符合实际情况；    
+代码完成后要进行migration，最后python manage.py runserver就能在浏览器中打开
 
 <span id="database">数据库建表处理 </span>
 ### 数据库建表处理 
