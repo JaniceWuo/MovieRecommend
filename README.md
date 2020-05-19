@@ -2,34 +2,38 @@
 一个电影推荐系统——实现用户登录、评分、推荐，采用协同过滤算法。<br/>
 ***
 `2020.4.10 作者序`：<br/>
-居然发现某二手交易app上出现了好几个卖家公然盗取我的项目及论文明码标价进行买卖。这个开源项目大家可以拿去用，但是买卖就造成侵权，望周知！<br/>
-该毕设项目已经是两年前做的了，所以就不进行代码维护了。由于写毕设的时间仓促以及技术掌握不牢，代码本身确实有很多不足，如果出现bug请海涵，自行调试成功即可。
+居然发现某二手交易app上出现了好几个卖家公然盗取我的项目及论文明码标价进行买卖。这个开源项目大家可以拿去用，但是买卖就造成侵权，望周知！
 
 ## 写在前面的话        
-  希望大家不要copy到本地修改后直接当做自己的毕业设计，最好自己学一遍python+django+mysql的基础知识。    
-  我完成毕业设计的时间线可以参考README末尾的“笔记”。    
+希望大家不要copy到本地修改后直接当做自己的毕业设计，最好自己学一遍`python+django+mysql`的基础知识。<br/>
+我完成毕业设计的时间线可以参考README末尾的<a href="#note">笔记</a>，请注意`笔记`中所记载的内容和最后的实际成果有所出入，只做为本人完成毕业设计的过程记录。<br/>
+本毕设为2018年所做，和当前主流技术有所出入，大家可以利用深度学习算法来改进推荐结果。<br/>    
 
-  下面贴出我在做这个电影推荐系统过程中收藏的部分资料链接，希望对大家有帮助。    
+下面贴出我收藏的部分资料链接。    
   [Window 下 MySQL 5.6.15 下载安装及使用](https://blog.csdn.net/wtfmonking/article/details/17467399)    
   [Python3 MySQL 数据库连接](http://www.runoob.com/python3/python3-mysql.html)    
   [协同过滤算法](https://blog.csdn.net/acdreamers/article/details/44672305)    
-  [django](https://www.cnblogs.com/fengbo1113/p/8547302.html)    
-  [Django用户登录与注册](https://blog.csdn.net/xiaoxujohna/article/details/51210186)  
+  [django](https://www.cnblogs.com/fengbo1113/p/8547302.html)     
 
 ## 系统实现工具
-1.pycharm    
-2.python3.6+django1.11    
-3.mysql    
-4.jquery+css+html5    
+1.Pycharm    
+2.Python3.6+django1.11 (python3.5亦可)
+3.MySQL5.7.21    
+4.Jquery+Css3+Html5    
 
 ## 如何使用    
 首先将项目克隆到本地，用pycharm打开，将用到的csv文件导入mysql数据表中，见<a href="#database">数据库建表</a> ，配置好数据库；    
-注意数据库相关代码可能都要进行修改以符合实际情况；    
-代码完成后要进行migration，最后python manage.py runserver就能在浏览器中打开
+注意数据库相关代码（端口号，登录名以及密码）可能都要进行修改以符合实际情况；（本项目端口号为3307,用户为root,密码为admin,database为MovieData）；    
+命令行执行:
+```Python
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+```
+点击http://127.0.0.1:8000/<br/>
 
-<span id="database">数据库建表处理 </span>
-### 数据库建表处理 
-1.在MySQL中创建一个database，取好名字，比如`MovieData`；
+<span id="database">数据库建表处理</span>
+1.在MySQL中创建一个database，取好名字，比如`MovieData`；<br/>
 2.在该数据库中创建`moviegenre3`和`users_resulttable`两张表。命令行如下：
 ```mysql
 CREATE TABLE moviegenre3(imdbId INT NOT NULL PRIMARY KEY,title varchar(300),poster varchar(600)); 
@@ -42,12 +46,13 @@ CREATE TABLE users_resulttable(userId INT NOT NULL PRIMARY KEY,imdbId INT,rating
 
 
 ## 系统流程    
-  用户登录系统，对电影进行评分，查看自己已评价电影，查看推荐结果(两种)    
+  用户注册、登录系统，对看过的电影进行评分，点击提交评分按钮，再点击查看推荐按钮即可看见推荐的电影列表。    
 
-## 论文    
-  本科毕业论文已上传，关于推荐系统的介绍、展示都在论文中，有需要者可阅读
+<!-- ## 论文    
+  本科毕业论文已上传，关于推荐系统的介绍、展示都在论文中，有需要者可阅读 -->
 
 ***
+<span id="note"></span>>
 **笔记**  
     2018年2月18日 寒假过的好快啊，前一阵子准备用flask，但是后面进一步了解之后决定用django+mysql+python完成这个推荐系统，现在就在懵懵懂懂的学django    
 
