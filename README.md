@@ -23,7 +23,7 @@
 
 ## 系统流程    
 用户注册、登录系统，对看过的电影进行评分，点击提交评分按钮，再点击查看推荐按钮即可看见推荐的电影列表。项目主界面如下：<br/>
-![img](./img/主界面.jpg)
+![img](https://github.com/JaniceWuo/MovieRecommend/blob/master/img/home.jpg)
 
 
 
