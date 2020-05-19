@@ -21,6 +21,13 @@
 3.MySQL5.7.21    
 4.Jquery+CSS3+Html5    
 
+## 系统流程    
+用户注册、登录系统，对看过的电影进行评分，点击提交评分按钮，再点击查看推荐按钮即可看见推荐的电影列表。项目主界面如下：<br/>
+![img](./img/主界面.jpg)
+
+
+
+
 ## 如何使用    
 首先将项目克隆到本地，用Pycharm打开，将用到的csv文件导入mysql数据表中，见<a href="#database">数据库建表</a> ，配置好数据库；    
 注意数据库相关代码（settings.py、views.py）可能都要进行修改以符合实际情况；（本项目端口号为3307,用户为root,密码为admin,database为MovieData）；    
@@ -30,8 +37,9 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
 ```
-点击http://127.0.0.1:8000/<br/>
+点击http://127.0.0.1:8000/ 即可查看注册登录以及评分页面<br/>
 
+***
 <span id="database">数据库建表处理</span><br/>
 1.在MySQL中创建一个database，取好名字，比如`MovieData`；<br/>
 2.在该数据库中创建`moviegenre3`和`users_resulttable`两张表,建表命令行如下：
@@ -47,9 +55,6 @@ CREATE TABLE users_resulttable(userId INT NOT NULL PRIMARY KEY,imdbId INT,rating
 ## 问题
 由于在`views.py`的查询推荐结果的代码中直接将查询sql写死为`select * from users_resulttable WHERE userId = 1001`，可能会报keyerror:1001的错误。如果报错请检查`users_resulttable`表的末尾是否存入了userId=1001的用户评分记录，如果没有，则是没有成功插入登录用户看过的电影评分记录。如果要进行第二个用户的注册和登录推荐，要将sql改为userId=1002或者先将user表中所存用户信息删除。
 
-
-## 系统流程    
-  用户注册、登录系统，对看过的电影进行评分，点击提交评分按钮，再点击查看推荐按钮即可看见推荐的电影列表。    
 
 <!-- ## 论文    
   本科毕业论文已上传，关于推荐系统的介绍、展示都在论文中，有需要者可阅读 -->
