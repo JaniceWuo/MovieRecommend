@@ -15,23 +15,15 @@
   [协同过滤算法](https://blog.csdn.net/acdreamers/article/details/44672305)    
   [django](https://www.cnblogs.com/fengbo1113/p/8547302.html)     
 
-## 系统实现工具
-1.Pycharm    
-2.Python3.6+django1.11 (python3.5亦可)<br/>
-3.MySQL5.7.21    
-4.Jquery+CSS3+Html5    
-
 ## 系统流程    
 用户注册、登录系统，对看过的电影进行评分，点击提交评分按钮，再点击查看推荐按钮即可看见推荐的电影列表。项目主页以及推荐结果如下：<br/>
 ![img](https://github.com/JaniceWuo/MovieRecommend/blob/master/img/home.jpg)
 ![img](https://github.com/JaniceWuo/MovieRecommend/blob/master/img/recommend.jpg)
 
-
-
 ## 如何使用    
-首先将项目克隆到本地，用Pycharm打开，将用到的csv文件导入mysql数据表中，见<a href="#database">数据库建表</a> ，配置好数据库；    
-注意数据库相关代码（settings.py、views.py）可能都要进行修改以符合实际情况；（本项目端口号为3307,用户为root,密码为admin,database为MovieData）；    
-命令行执行:
+1.首先将项目克隆到本地，用Pycharm打开movierecommend文件夹，并install<a href="#env">项目依赖</a> <br/>
+2.将用到的csv文件导入mysql数据表中，详见<a href="#database">数据库建表</a> ，配置好数据库；注意数据库相关代码（settings.py、views.py）可能都要进行修改以符合实际情况；（本项目端口号为3307,用户为root,密码为admin,database为MovieData);<br/>
+3.命令行执行:
 ```Python
 python manage.py makemigrations
 python manage.py migrate
@@ -39,7 +31,13 @@ python manage.py runserver
 ```
 点击http://127.0.0.1:8000/ 即可查看注册登录以及评分页面<br/>
 
+
 ***
+<span id="env">项目依赖</span><br/>
+1.Python3.6+django1.11 (python3.5亦可)<br/>
+2.MySQL5.7.21    
+3.Jquery+CSS3+Html5    
+
 <span id="database">数据库建表处理</span><br/>
 1.在MySQL中创建一个database，取好名字，比如`MovieData`；<br/>
 2.在该数据库中创建`moviegenre3`和`users_resulttable`两张表,建表命令行如下：
@@ -49,7 +47,7 @@ CREATE TABLE moviegenre3(imdbId INT NOT NULL PRIMARY KEY,title varchar(300),post
 ```mysql
 CREATE TABLE users_resulttable(userId INT NOT NULL PRIMARY KEY,imdbId INT,rating DECIMAL(3,1)); 
 ```
-3.通过命令行或者navicat等工具将项目`data`文件夹下的两张csv分别导入上面创建好的两张table中。
+3.通过命令行或者navicat等工具将项目`data`文件夹下的两张csv表分别导入上面创建好的两张table中。
 
 
 ## 问题
@@ -125,19 +123,19 @@ python manage.py migrate
     输入'http://127.0.0.1:8000/users/login/'，  返回用户登录界面       
     点击登录后进入推荐系统首页（目前的首页只有一个电影分类页面，之后应增加分页，以及实现用户对电影评分，数据库记录用户对电影的评分）    
 
-2018/4/12 <br/>   
+2018/4/12<br/>
 今天找到了另一个csv文件，里面含有电影海报的链接，这样可以直接用Js动态获取链接然后加载图片；    
 还有由于有很多个csv文件，每个文件包含的内容都不一样，所以要将各个文件合并。准备直接用mysql的多表查询。花了很久才成功把csv导入进mysql表中的ratings.
 
-2018/4/13<br/>    
+2018/4/13<br/>
 注意result表里面要存电影的名字，而名字里面很多不确定的特殊符号，比如有逗号，冒号等。所以不能加enclosed by '"'这句，否则csv导进mysql表时会中断。    
 
-4/14 <br/>   
+4/14 <br/>
 今天做的很少，主要都去看深度学习视频了，为以后的研究生项目扫盲。    
 主要还是csv和Mysql的问题，不知道要怎么去遍历里面的数据。之前是自己模拟的几个用户对电影进行评分，用的是列表类型，我就想能不能读取csv然后转为列表再操作。    
 
 
-4/20  <br/>  
+4/20 <br/>
 由于之前创建表时，不小心将rating设为了int型，所以今天重新建了一张表改为DECIMAL，名为resultTable。而且增加了主键:id。    
 ‘alter table resultTable add column id int auto_increment PRIMARY KEY;’是给表增加一列并设为自增主键。    
 现在前端页面已经可以获取图片的imdbId号和评分，接下来就是获取当前用户的名字，给他分一个从669开始的userId号。然后插入imdbId号和rating，调用算法进行分析。    
