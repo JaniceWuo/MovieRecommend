@@ -66,7 +66,6 @@ def recommend1(request):
     read_mysql_to_csv('users/static/users_resulttable.csv',USERID)  #追加数据，提高速率
     ratingfile = os.path.join('users/static', 'users_resulttable.csv')
     usercf = UserBasedCF()
-    #userid = '1001'
     userid = str(USERID)#得到了当前用户的id
     print(userid)
     usercf.generate_dataset(ratingfile)
@@ -170,7 +169,7 @@ import codecs
 
 
 def get_conn():
-    conn = pymysql.connect(host='127.0.0.1', port=3307, user='root', passwd='aptx4869.', db='haha', charset='utf8')
+    conn = pymysql.connect(host='127.0.0.1', port=3307, user='root', passwd='admin', db='haha', charset='utf8')
     return conn
 
 def query_all(cur, sql, args):

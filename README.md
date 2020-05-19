@@ -23,9 +23,23 @@
   4.jquery+css+html5    
 
 ## 如何使用    
-  首先将项目克隆到本地，用pycharm打开，将用到的csv文件导入mysql数据表中，配置好数据库；    
+  首先将项目克隆到本地，用pycharm打开，将用到的csv文件导入mysql数据表中，[数据库建表处理](#database）配置好数据库；    
   注意数据库相关代码可能都要进行修改以符合实际情况；    
   代码完成后要进行migration，最后python manage.py runserver就能在浏览器中打开
+
+<span id="database">数据库建表处理 </span>
+### 数据库建表处理 
+1.在MySQL中创建一个database，取好名字，比如`MovieData`；
+2.在该数据库中创建`moviegenre3`和`users_resulttable`两张表。命令行如下：
+```mysql
+CREATE TABLE moviegenre3(imdbId INT NOT NULL PRIMARY KEY,title varchar(300),poster varchar(600)); 
+```
+```mysql
+CREATE TABLE users_resulttable(userId INT NOT NULL PRIMARY KEY,imdbId INT,rating DECIMAL(3,1)); 
+```
+3.通过命令行或者navicat等工具将`data`文件夹下的两张csv分别导入上面创建好的两张table中。
+
+
 
 ## 系统流程    
   用户登录系统，对电影进行评分，查看自己已评价电影，查看推荐结果(两种)    
