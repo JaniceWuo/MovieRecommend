@@ -1,15 +1,15 @@
 # MovieRecommend  
-一个电影推荐系统（本科毕业设计）——实现用户登录、评分、推荐，采用协同过滤算法。<br/>
+一个电影推荐系统（本科毕业设计）——实现用户登录、评分、推荐，采用协同过滤算法。:cherry_blossom: <br/>
 ***
 <!-- `2020.4.10 作者序`：<br/>
 居然发现某二手交易app上出现了好几个卖家公然盗取我的项目及论文明码标价进行买卖。这个开源项目大家可以拿去用，但是买卖就造成侵权，望周知！
  -->
-## 写在前面的话        
-希望大家不要copy到本地修改后直接当做自己的毕业设计，最好自己学一遍`python+django+mysql`的基础知识。<br/>
+## 作者序        
+<!-- 希望大家不要copy到本地修改后直接当做自己的毕业设计，最好自己学一遍`python+django+mysql`的基础知识。<br/> -->
 我完成毕业设计的时间线可以参考README末尾的<a href="#note">笔记</a>，请注意`笔记`中所记载的内容和最后的实际成果有所出入，只做为本人完成毕业设计的过程记录。<br/>
 本毕设为2018年所做，和当前主流技术有所出入，大家可以利用深度学习算法来改进推荐结果。<br/>    
 
-下面贴出我收藏的部分资料链接。    
+下面贴出我收藏的部分资料链接，希望对大家有帮助。    
   [Window 下 MySQL 5.6.15 下载安装及使用](https://blog.csdn.net/wtfmonking/article/details/17467399)    
   [Python3 MySQL 数据库连接](http://www.runoob.com/python3/python3-mysql.html)    
   [协同过滤算法](https://blog.csdn.net/acdreamers/article/details/44672305)    
@@ -58,9 +58,10 @@ alter table users_resulttable add column id int auto_increment PRIMARY KEY;
 ```
 
 ## 问题
-1.由于在`views.py`的查询推荐结果的代码中直接将查询sql写死为`select * from users_resulttable WHERE userId = 1001`，可能会报keyerror:1001的错误。如果报错请检查`users_resulttable`表的末尾是否存入了userId=1001的用户评分记录，如果没有，很可能是用户没有点击`提交评分`按钮将数据插入数据表造成的。如果要进行第二个用户的注册和登录推荐，要将sql改为userId=1002或者先将user表中所存用户信息删除。
-2.如果通过命令行将csv导入数据库表报错‘The MySQL server is running with the --secure-file-priv option so it cannot execute this statement’，则是mysql版本问题，建议使用5.6版本。如果使用5.7版本出现此问题，修改mysql文件夹下的my.ini文件，增加`secure_file_priv=`语句，并且在service服务里面重启mysql即可。
-3.执行迁移时出现问题建议删除迁移文件重新迁移。
+1.由于在`views.py`的查询推荐结果的代码中直接将查询sql写死为`select * from users_resulttable WHERE userId = 1001`，可能会报keyerror:1001的错误。如果报错请检查`users_resulttable`表的末尾是否存入了userId=1001的用户评分记录，如果没有，很可能是用户没有点击`提交评分`按钮将数据插入数据表造成的。如果要进行第二个用户的注册和登录推荐，要将sql改为userId=1002或者先将user表中所存用户信息删除。<br/>
+2.如果通过命令行将csv导入数据库表报错‘The MySQL server is running with the --secure-file-priv option so it cannot execute this statement’，则是mysql版本问题，建议使用5.6版本。如果使用5.7版本出现此问题，修改mysql文件夹下的my.ini文件，增加`secure_file_priv=`语句，并且在service服务里面重启mysql即可。<br/>
+3.执行迁移时出现问题建议删除迁移文件重新迁移。<br/>
+4.如有其他问题可邮件致信我：<mahappyending@gmail.com>
 <!-- ## 论文    
   本科毕业论文已上传，关于推荐系统的介绍、展示都在论文中，有需要者可阅读 -->
 
