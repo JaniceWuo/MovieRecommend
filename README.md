@@ -29,13 +29,14 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
 ```
-点击http://127.0.0.1:8000/ 即可查看注册登录以及评分页面<br/>
+点击http://127.0.0.1:8000/ 即可查看注册登录以及评分页面。<br/>
+**注意登录后点击电影海报下面的星星对该电影评分，之后还要点击左上角的“提交评分”按钮才能将该评分数据存入mysql中，否则代码会报错。**
 
 
 ***
 <span id="env">项目依赖</span><br/>
 1.Python3.6+django1.11 (python3.5亦可)<br/>
-2.MySQL5.7.21    
+2.MySQL5.6<br/>
 3.Jquery+CSS3+Html5    
 
 <span id="database">数据库建表处理</span><br/>
@@ -45,15 +46,21 @@ python manage.py runserver
 CREATE TABLE moviegenre3(imdbId INT NOT NULL PRIMARY KEY,title varchar(300),poster varchar(600)); 
 ```
 ```mysql
-CREATE TABLE users_resulttable(userId INT NOT NULL PRIMARY KEY,imdbId INT,rating DECIMAL(3,1)); 
+CREATE TABLE users_resulttable(userId INT NOT NULL,imdbId INT,rating DECIMAL(3,1)); 
 ```
-3.通过命令行或者navicat等工具将项目`data`文件夹下的两张csv表分别导入上面创建好的两张table中。
-
+3.通过命令行或者navicat等工具将项目`data`文件夹下的两张csv表分别导入上面创建好的两张table中。由于moviegenre3.csv中的超链接较复杂，建议使用navicat工具导入；users_resulttable表可以使用下面命令行导入：
+```mysql
+load data infile "E:/MovieRecommend/data/users_resulttable.csv" into table users_resulttable fields terminated by ',' lines terminated by '\n' (userId,imdbId,rating);
+```
+注意，此表没有主键，增加主键操作为:
+```mysql
+alter table users_resulttable add column id int auto_increment PRIMARY KEY; 
+```
 
 ## 问题
-由于在`views.py`的查询推荐结果的代码中直接将查询sql写死为`select * from users_resulttable WHERE userId = 1001`，可能会报keyerror:1001的错误。如果报错请检查`users_resulttable`表的末尾是否存入了userId=1001的用户评分记录，如果没有，则是没有成功插入登录用户看过的电影评分记录。如果要进行第二个用户的注册和登录推荐，要将sql改为userId=1002或者先将user表中所存用户信息删除。
-
-
+1.由于在`views.py`的查询推荐结果的代码中直接将查询sql写死为`select * from users_resulttable WHERE userId = 1001`，可能会报keyerror:1001的错误。如果报错请检查`users_resulttable`表的末尾是否存入了userId=1001的用户评分记录，如果没有，很可能是用户没有点击`提交评分`按钮将数据插入数据表造成的。如果要进行第二个用户的注册和登录推荐，要将sql改为userId=1002或者先将user表中所存用户信息删除。
+2.如果通过命令行将csv导入数据库表报错‘The MySQL server is running with the --secure-file-priv option so it cannot execute this statement’，则是mysql版本问题，建议使用5.6版本。如果使用5.7版本出现此问题，修改mysql文件夹下的my.ini文件，增加`secure_file_priv=`语句，并且在service服务里面重启mysql即可。
+3.执行迁移时出现问题建议删除迁移文件重新迁移。
 <!-- ## 论文    
   本科毕业论文已上传，关于推荐系统的介绍、展示都在论文中，有需要者可阅读 -->
 
